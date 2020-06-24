@@ -40,7 +40,9 @@ public class Basket {
         }
 
         private BigDecimal discounts() {
-            return items.stream().map(Item::discount)
+            return items.stream().filter(item -> item instanceof DiscountItem)
+            		.map(item -> (DiscountItem)item)
+            		.map(DiscountItem::discount)
             		.reduce(BigDecimal::add)
             		.orElse(BigDecimal.ZERO)
             		.setScale(2, RoundingMode.HALF_UP);

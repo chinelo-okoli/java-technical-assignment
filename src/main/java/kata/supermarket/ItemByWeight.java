@@ -15,10 +15,4 @@ public class ItemByWeight implements Item {
     public BigDecimal price() {
         return product.pricePerKilo().multiply(weightInKilos).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
-
-	@Override
-	public BigDecimal discount() {
-		// TODO implement discounting for weighted items
-		return BigDecimal.ZERO;
-	}
 }

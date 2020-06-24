@@ -2,7 +2,7 @@ package kata.supermarket;
 
 import java.math.BigDecimal;
 
-public class ItemByUnit implements Item {
+public class ItemByUnit implements DiscountItem {
 
     private final Product product;
     private final BigDecimal units;
