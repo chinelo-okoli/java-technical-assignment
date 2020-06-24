@@ -17,4 +17,9 @@ public class Product {
     public Item oneOf() {
         return new ItemByUnit(this);
     }
+    
+    //TODO implements units functionality
+    public Item unitsOf(long units) {
+        return new ItemByUnit(this);
+    }
 }
