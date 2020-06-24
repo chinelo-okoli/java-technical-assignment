@@ -20,4 +20,10 @@ public class ItemByUnit implements Item {
     public BigDecimal price() {
         return product.pricePerUnit().multiply(units);
     }
+
+	@Override
+	public BigDecimal discount() {
+		// TODO implement bogof discounting for items by unit
+		return BigDecimal.ZERO;
+	}
 }
