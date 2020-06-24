@@ -3,6 +3,7 @@ package kata.supermarket;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Stream;
 
@@ -24,9 +25,15 @@ class BasketDiscountTest {
         return Stream.of(
                 singleItemBuyOneGetOneFreeDiscount(),
                 evenItemsBuyOneGetOneFreeDiscount(),
-                oddItemsBuyOneGetOneFreeDiscount()
+                oddItemsBuyOneGetOneFreeDiscount(),
+                multipleItemsByWeightAndByUnit()
         );
     }
+
+	private static Arguments multipleItemsByWeightAndByUnit() {
+		return Arguments.of("multiple items by weight and by unit", "4.35", 
+                Arrays.asList(twoFiftyGramsOfAmericanSweets(), multiplePacksOfDigestives(4)));
+	}
 
 	private static Arguments oddItemsBuyOneGetOneFreeDiscount() {
 		return Arguments.of("odd number of items priced with bogof discount", "4.65", Collections.singleton(multiplePacksOfDigestives(5)));
@@ -48,4 +55,13 @@ class BasketDiscountTest {
     private static Item multiplePacksOfDigestives(long units) {
         return new Product(new BigDecimal("1.55")).unitsOf(units);
     }
+    
+    private static WeighedProduct aKiloOfAmericanSweets() {
+        return new WeighedProduct(new BigDecimal("4.99"));
+    }
+    
+    private static Item twoFiftyGramsOfAmericanSweets() {
+        return aKiloOfAmericanSweets().weighing(new BigDecimal(".25"));
+    }
+    
 }
